@@ -8,7 +8,7 @@ def load_contacts():
           data = json.load(file)
       return data
   except FileNotFoundError:
-    return {}
+      return {}
 
 
 

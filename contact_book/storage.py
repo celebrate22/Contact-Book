@@ -1,19 +1,33 @@
-import json 
+import json
 
 
 def load_contacts():
-  # 2. Open the file in 'r' (read) mode
+  """Reads the contacts.json file and returns a dictionary."""
   with open("contacts.json", "r", encoding="utf-8") as file:
-
-    # 3. Read the file AND convert it to a dictionary all at once
     data = json.load(file)
-
-  # 4. Return our brand new dictionary
   return data
 
 
-# my_dictionary = load_contacts()
+def save_contacts(data_dictionary):
+  """Saves a dictionary back into the contacts.json file with formatting."""
+  with open("contacts.json", "w", encoding="utf-8") as file:
+    json.dump(data_dictionary, file, indent=2, ensure_ascii=False)
+  print("contacts.json has been updated and saved!")
 
-# print(my_dictionary)
 
 
+# Data we want to save
+my_updated_contacts = {
+    "contacts": [
+        {"name": "Alice", "phone": "555-0123"},
+        {"name": "Bob", "phone": "555-4567"},
+        {"name": "Charlie", "phone": "555-9999"},
+    ]
+}
+
+# Run our save function
+save_contacts(my_updated_contacts)
+
+# Optional: Run our load function to prove it works!
+loaded_data = load_contacts()
+print("Loaded Data:", loaded_data)
